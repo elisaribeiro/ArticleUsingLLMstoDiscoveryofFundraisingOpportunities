@@ -216,7 +216,7 @@ def process_pdfs_into_documents(pdf_sources: Union[str, Sequence[Union[str, io.B
                                 id=f"{chunk_id_base}_cronograma"
                             ))
                     elif text and not found_main_cronograma_table:
-                        text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+                        text_splitter = RecursiveCharacterTextSplitter(chunk_size=5000, chunk_overlap=500)
                         text_chunks = text_splitter.split_text(text)
                         for chunk_idx, txt_chunk in enumerate(text_chunks):
                             if chunk_has_excluded_term(txt_chunk):

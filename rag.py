@@ -45,7 +45,17 @@ def perguntar_openai(pergunta: str, contexto: str, chat_history: Optional[List[D
         # Usar os tipos específicos para o role="system"
         ChatCompletionSystemMessageParam(
             role="system",
-            content="Você é um assistente útil e preciso. Responda apenas com informações contidas no contexto fornecido. Quando solicitado a listar editais, **LISTE CADA EDITAL INDIVIDUALMENTE, SEJA EXAUSTIVO e inclua TÍTULO, AGÊNCIA, PRAZO FINAL e URL para CADA edital relevante**. Se a URL não for um link direto para o PDF, forneça a URL da página do edital."
+            content=(
+                "Você é um assistente útil e preciso, especializado em editais de fomento. Sempre responda apenas com informações contidas no contexto fornecido.\n"
+                "- Se a pergunta for sobre listagem de editais, forneça uma tabela comparativa em Markdown, incluindo nome do edital, objetivo do edital, agência, prazo final e URL.\n"
+                "- A URL de cada edital deve ser extraída explicitamente dos metadados fornecidos no contexto. Use a tag `[clique aqui](URL)` para cada link.\n"
+                "- O nome do edital deve ser exibido na tabela para facilitar perguntas futuras.\n"
+                "- Se o usuário pedir detalhes de um edital específico, forneça objeto, data, critérios de elegibilidade, valores, modalidades de apoio e outros detalhes relevantes, formatando a resposta em Markdown.\n"
+                "- Sempre verifique se o prazo de submissão do edital é igual ou superior à data atual. Se for inferior, não liste este edital pois está expirado.\n"
+                "- Se não for possível verificar alguma informação do edital, peça ao usuário por mais detalhes ou contexto.\n"
+                "- Ao final da resposta, sugira novas perguntas para que o usuário possa obter mais detalhes sobre os editais apresentados, por exemplo: 'Deseja saber os critérios de elegibilidade do edital X?' ou 'Quer detalhes sobre valores ou modalidades de apoio?'.\n"
+                "- Sempre formate a saída em Markdown.\n"
+            )
         ),
     ]
 

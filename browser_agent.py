@@ -50,7 +50,7 @@ def run_fomento_search_agent() -> List[Dict[str, Any]]:
     Comece pesquisando em sites conhecidos de agências de fomento brasileiras ou grandes universidades.
     Acesse obrigatoriamente TODOS os seguintes links:
 
-    [http://memoria2.cnpq.br/web/guest/chamadas-publicas];
+    [http://memoria2.cnpq.br/web/guest/chamadas-publicas?p_p_id=resultadosportlet_WAR_resultadoscnpqportlet_INSTANCE_0ZaM&filtro=abertas/#];
     [https://www.gov.br/capes/pt-br/assuntos/editais-e-resultados-capes];
     [http://www.finep.gov.br/chamadas-publicas/chamadaspublicas?situacao=aberta];
     [https://fapesp.br/chamadas/]

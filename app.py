@@ -1,3 +1,4 @@
+import re
 import streamlit as st
 import time
 
@@ -10,6 +11,7 @@ from typing import List, Dict, Any # Importar tipos para o histórico de chat
 
 # Importa as funções de alto nível dos seus módulos separados
 from browser_agent import run_fomento_search_agent
+from edital_manager import load_cached_grants
 from indexador_pdf import process_pdfs_into_documents # Usando o nome que você forneceu
 from rag import HuggingFaceEmbedding, perguntar_openai, retrieve_documents # Usando o nome que você forneceu
 from langchain_chroma import Chroma
@@ -17,8 +19,6 @@ from langchain_core.documents import Document
 
 # Importa a função de download
 from download_manager import download_pdfs_from_editals_json
-from edital_manager import load_cached_grants
-import re
 
 # --- Configurações Iniciais ---
 load_dotenv()
@@ -63,10 +63,13 @@ def start_qa_session(user_question):
     
     chat_history: List[Dict[str, str]] = [] # NOVO: Inicializa o histórico de chat para a sessão
 
-    # Tenta responder por metadados antes de consultar o LLM
-    resposta_meta = responde_por_metadados(user_question)
-    if resposta_meta:
-        return resposta_meta
+    # user_question = input("\nSua pergunta (ou 'voltar'): ").strip()
+    # if user_question.lower() == 'voltar':
+    #     print("Retornando ao menu principal.")
+    #     break
+
+    docs = retrieve_documents(user_question, vectorstore)
+    print(f"Docs retornados: {len(docs)}")
 
     # --- Filtro por número de edital na pergunta ---
     edital_num_match = re.search(r'(\d{1,3}/\d{4})', user_question)
@@ -121,11 +124,17 @@ def start_qa_session(user_question):
             response_content = perguntar_openai(user_question, contexto, chat_history=chat_history) 
         except Exception as e:
             response_content = f"Ocorreu um erro ao gerar a resposta: {e}. Por favor, verifique sua chave da API ou o status do serviço do LLM."
+    
+    # # Adiciona a resposta do assistente ao histórico de chat
+    # chat_history.append({"role": "assistant", "content": response_content})
     return response_content
+    # print("\n📌 Resposta do modelo:\n", response_content)
+
+
 
 # --- CONFIGURAÇÃO DA PÁGINA ---
 # Define o título da página, o ícone e o layout.
-st.set_page_config(page_title="Meu Chatbot", page_icon="🤖", layout="centered")
+st.set_page_config(page_title="Chatbot de Editais de Fomento", page_icon="📖", layout="wide")
 
 # --- FUNÇÃO DE RESPOSTA DO BOT ---
 # Esta é uma função de exemplo. Em um caso real, você faria uma chamada
@@ -239,7 +248,7 @@ with st.sidebar:
 
 # --- LÓGICA DA JANELA PRINCIPAL DO CHAT ---
 
-st.title("🤖 Meu Chatbot Pessoal")
+st.title("Chatbot de Editais de Fomento")
 st.caption("Um aplicativo de chat simples usando Streamlit")
 
 # Obtém o ID do chat atual
