@@ -71,7 +71,11 @@ cp .env.example .env
 ```bash
 OPENROUTER_API_KEY=...
 ```
-### 6. Execute a interface Streamlit
+### 6. Atualize os editais
+```bash
+execute o arquivo atualizaEditais.py
+```
+### 7. Execute a interface Streamlit
 ```bash
 streamlit run app.py
 ```
