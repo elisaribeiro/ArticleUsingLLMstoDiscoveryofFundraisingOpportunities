@@ -39,7 +39,7 @@ Responsável por:
 - **Streamlit** – Interface web interativa  
 - **ChromaDB** – Armazenamento vetorial  
 - **sentence-transformers / HuggingFace** – Embeddings  
-- **OpenRouter / OpenAI / Anthropic** – LLMs  
+- **OpenRouter** – LLMs  
 - **BeautifulSoup / PyPDF** – Extração de texto  
 - **Browser automation** – Agente autônomo
 
@@ -67,6 +67,7 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 ### 5. Preencha com sua chave
+(é necessário possuir uma conta https://openrouter.ai/ com créditos)
 ```bash
 OPENROUTER_API_KEY=...
 ```
