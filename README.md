@@ -33,7 +33,7 @@ Responsável por:
 
 ---
 
-## 📚 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **Python 3.11+**
 - **Streamlit** – Interface web interativa  
@@ -45,11 +45,60 @@ Responsável por:
 
 ---
 
-## 🚀 Como Executar
+## Como Executar
 
 ### 1. Clone o repositório
 ```bash
 git clone <link do repositório>
 cd ArticleUsingLLMstoDiscoveryofFundraisingOpportunities
+```
+### 2. Crie o ambiente virtual
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/macOS
+.\venv\Scripts\activate   # Windows
+```
+### 3. Instale as dependências
+```bash
+pip install -r requirements.txt
+```
+### 4. Configure o arquivo .env
+```bash
+cp .env.example .env
+```
+### 5. Preencha com sua chave
+```bash
+OPENROUTER_API_KEY=...
+```
+### 6. Execute a interface Streamlit
+```bash
+streamlit run app.py
+```
 
-### 2. Clone o repositório
+## Prova de Conceito (PoC)
+
+A PoC inclui cenários funcionais que validam o artefato:
+
+- Identificação de elegibilidade
+- Extração de datas e restrições
+- Filtragem por áreas e requisitos
+- Resumo de oportunidades
+- Recuperação fundamentada (trechos exibidos ao usuário)
+- Detecção e recusa de perguntas fora do escopo
+
+## Metodologia
+
+Este artefato foi desenvolvido seguindo as etapas da metodologia DSR:
+
+1. Identificação do problema
+2. Definição dos objetivos da solução
+3. Projeto e construção do artefato
+4. Demonstração (PoC funcional)
+5. Comunicação (artigo para SBSI 2026)
+
+## Limitações
+
+- Dependência de layout estável dos portais (fragilidade do scraping)
+- Atualização automática configurada em código
+- Falta de testes com usuários finais (planejado)
+- Ausência de persistência entre sessões
