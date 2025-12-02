@@ -74,6 +74,7 @@ OPENROUTER_API_KEY=...
 ```bash
 streamlit run app.py
 ```
+---
 
 ## Prova de Conceito (PoC)
 
@@ -86,6 +87,8 @@ A PoC inclui cenários funcionais que validam o artefato:
 - Recuperação fundamentada (trechos exibidos ao usuário)
 - Detecção e recusa de perguntas fora do escopo
 
+---
+
 ## Metodologia
 
 Este artefato foi desenvolvido seguindo as etapas da metodologia DSR:
@@ -95,6 +98,8 @@ Este artefato foi desenvolvido seguindo as etapas da metodologia DSR:
 3. Projeto e construção do artefato
 4. Demonstração (PoC funcional)
 5. Comunicação (artigo para SBSI 2026)
+
+---
 
 ## Limitações
 
